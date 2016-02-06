@@ -1,0 +1,88 @@
+<!DOCTYPE html><html>
+<head>
+	<title>Edderiofer&rsquo;s Heyawake 21</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body><center>
+
+	<table style="position:absolute; left:10px; top:10px; background-color:black;">
+		<td>
+			<a href="#popup1"><img src="../jdgmiles.github.io/questionmark.png" style="width:60px; height:60px"></a><br>
+			<a href="https://twitter.com/jimdgmiles" target=blank_><img src="../jdgmiles.github.io/twitter.png" style="width:60px; height:60px"></a><br>
+			<a href="http://jdgmiles.github.io/" target="_blank"><img src="../jdgmiles.github.io/jdgm.png" style="width:60px; height:60px"></a>
+		</td>
+	</table>
+
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<br>
+			<a class="close" style="right: 30px;" href="#">&times;</a><br>
+			<div style="font-family:Georgia; color:white; text-align:center; text-decoration:underline; font-size:250%">Edderiofer&rsquo;s Heyawake 21</div>
+			<span style="font-family:Georgia; font-size:170%; color:white; text-align:justify;"><br>This is a page to experiment with solutions to Edderiofer&rsquo;s <a href="http://edderiofer.blogspot.co.uk/2015/04/puzzle-1.html" target="_blank">&ldquo;Puzzle #1&rdquo;</a>.<br><br>It is a <a href="https://en.wikipedia.org/wiki/Heyawake" target="_blank">Heyawake</a> puzzle.<br><br>The page does not implement any &ldquo;checking&rdquo; function, it is simply for easy experimentation of filling and unfilling cells.<br><br></span>
+		</div>
+	</div>
+	<div style="width:1070px"><table style="padding:0px 80px 0px 80px;" id="tablecontents">
+	</table>
+	<br>
+	<table><tr><td><button style="width:180px; font-size:35px; color:#333333; font-family:georgia;" onclick="reset()">Reset</button></td></tr></table>
+</div>
+
+</center></body>
+</html>
+
+<script type="text/javascript">
+var tablecolumns=18;
+var tablerows=10;
+var tablecontentsmarkup=" ";
+var maxwidth=900;
+var maxheight=900;
+var cellsize=Math.min(Math.floor(maxwidth/tablecolumns), Math.floor(maxheight/tablerows));
+var cellstate=[];
+for(var i=0; i<tablecolumns*tablerows; i++){cellstate[i]=0;}
+
+for(var i=0; i<tablerows; i++){
+	tablecontentsmarkup=tablecontentsmarkup+"<tr>";
+	for(var j=0; j<tablecolumns; j++){
+		tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" id=\""+(i*tablecolumns+j)+"\" onclick=\"clicked("+(i*tablecolumns+j)+")\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"></td>";
+	}
+	tablecontentsmarkup=tablecontentsmarkup+"</tr>";
+}
+
+document.getElementById("tablecontents").innerHTML=tablecontentsmarkup;
+
+document.getElementById("0").innerHTML="2";
+document.getElementById("1").innerHTML="1";
+document.getElementById("19").innerHTML="21";
+document.getElementById("46").innerHTML="21";
+
+for(var i=0; i<18; i++){document.getElementById(i).style.borderTop="7px solid gray"; document.getElementById(179-i).style.borderBottom="7px solid gray";}
+for(var i=0; i<10; i++){document.getElementById(18*i).style.borderLeft="7px solid gray"; document.getElementById(18*i+17).style.borderRight="7px solid gray";}
+
+for(var i=19; i<35; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=46; i<53; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=145; i<152; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=163; i<179; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=0; i<10; i++){document.getElementById(18*i).style.borderRight="4px solid gray"; document.getElementById(18*i+1).style.borderLeft="4px solid gray";}
+
+for(var i=1; i<9; i++){document.getElementById(18*i+7).style.borderRight="4px solid gray"; document.getElementById(18*i+8).style.borderLeft="4px solid gray";}
+
+for(var i=0; i<9; i++){document.getElementById(18*i+9).style.borderRight="4px solid gray"; document.getElementById(18*i+10).style.borderLeft="4px solid gray";}
+
+for(var i=0; i<10; i++){document.getElementById(18*i+16).style.borderRight="4px solid gray"; document.getElementById(18*i+17).style.borderLeft="4px solid gray";}
+
+function clicked(cell){
+	if(cellstate[cell]==0){document.getElementById(cell).style.backgroundColor="black"; cellstate[cell]=1;}
+	else{document.getElementById(cell).style.backgroundColor="white"; cellstate[cell]=0;}
+}
+
+function reset(){
+	for(var i=0; i<tablecolumns*tablerows; i++){cellstate[i]=0; document.getElementById(i).style.backgroundColor="white";}
+}
+
+</script>
